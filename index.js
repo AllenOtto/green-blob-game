@@ -6,18 +6,33 @@ let y = 100;
 let radius = 50;
 
 let downPressed = false;
+let upPressed = false;
+let leftPressed = false;
+let rightPressed = false;
 
 // Game loop
 function drawGame() {
-    console.log("draw");
     // We could use either requestAnimationFrame()
     // or setInterval to call the draw function in a loop
     // a.k.a, create our game loop (refreshing our game
     // 60 times a second)). The comp screen by default
     // refreshed 60 times a sec (60Hz frequency)
-    // requestAnimationFrame(drawGame);
+    requestAnimationFrame(drawGame);
     clearScreen();
+    inputs();
     drawGreenBlob();
+}
+
+function inputs() {
+    if(downPressed) {
+        y += 10;
+    } else if(upPressed) {
+        y -= 10;
+    } else if(leftPressed) {
+        x -= 10;
+    } else if(rightPressed) {
+        x += 10;
+    }
 }
 
 function drawGreenBlob() {
@@ -42,13 +57,25 @@ function keyDown(event) {
     // Down
     if(event.keyCode == 40) {
         downPressed = true;
+    } else if(event.keyCode == 38) {
+        upPressed = true;
+    } else if(event.keyCode == 37) {
+        leftPressed = true;
+    } else if(event.keyCode == 39) {
+        rightPressed = true;
     }
 }
 
 function keyUp(event) {
     // Up
-    if(event.keyCode == 38) {
-        downPressed = true;
+    if(event.keyCode == 40) {
+        downPressed = false;
+    } else if(event.keyCode == 38) {
+        upPressed = false;
+    } else if(event.keyCode == 37) {
+        leftPressed = false;
+    } else if(event.keyCode == 39) {
+        rightPressed = false;
     }
 }
 
