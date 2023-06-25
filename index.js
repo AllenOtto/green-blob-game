@@ -5,6 +5,8 @@ let x = 100;
 let y = 100;
 let radius = 50;
 
+let downPressed = false;
+
 // Game loop
 function drawGame() {
     console.log("draw");
@@ -13,7 +15,7 @@ function drawGame() {
     // a.k.a, create our game loop (refreshing our game
     // 60 times a second)). The comp screen by default
     // refreshed 60 times a sec (60Hz frequency)
-    requestAnimationFrame(drawGame);
+    // requestAnimationFrame(drawGame);
     clearScreen();
     drawGreenBlob();
 }
@@ -30,6 +32,24 @@ function drawGreenBlob() {
 function clearScreen() {
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+document.body.addEventListener('keydown', keyDown);
+
+document.body.addEventListener('keyup', keyUp);
+
+function keyDown(event) {
+    // Down
+    if(event.keyCode == 40) {
+        downPressed = true;
+    }
+}
+
+function keyUp(event) {
+    // Up
+    if(event.keyCode == 38) {
+        downPressed = true;
+    }
 }
 
 drawGame(); // Using setInterval, instead of calling 
