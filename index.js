@@ -9,6 +9,7 @@ let downPressed = false;
 let upPressed = false;
 let leftPressed = false;
 let rightPressed = false;
+let speed = 10;
 
 // Game loop
 function drawGame() {
@@ -20,18 +21,40 @@ function drawGame() {
     requestAnimationFrame(drawGame);
     clearScreen();
     inputs();
+    boundaryCheck();
     drawGreenBlob();
+}
+
+function boundaryCheck() {
+    // Border top limit
+    if(y < radius) {
+        y = radius;
+    }
+    // Border bottom limit
+    if(y > 600 - radius) {
+        y = 600 - radius;
+    }
+
+    // Border left limit
+    if(x < radius) {
+        x = radius;
+    }
+
+    //Border right limit
+    if(x > 800 - radius) {
+        x = 800 - radius;
+    }
 }
 
 function inputs() {
     if(downPressed) {
-        y += 10;
+        y += speed;
     } else if(upPressed) {
-        y -= 10;
+        y -= speed;
     } else if(leftPressed) {
-        x -= 10;
+        x -= speed;
     } else if(rightPressed) {
-        x += 10;
+        x += speed;
     }
 }
 
@@ -54,14 +77,13 @@ document.body.addEventListener('keydown', keyDown);
 document.body.addEventListener('keyup', keyUp);
 
 function keyDown(event) {
-    // Down
-    if(event.keyCode == 40) {
+    if(event.keyCode == 40) { // Down
         downPressed = true;
-    } else if(event.keyCode == 38) {
+    } else if(event.keyCode == 38) { // up
         upPressed = true;
-    } else if(event.keyCode == 37) {
+    } else if(event.keyCode == 37) { // Left
         leftPressed = true;
-    } else if(event.keyCode == 39) {
+    } else if(event.keyCode == 39) { // Right
         rightPressed = true;
     }
 }
