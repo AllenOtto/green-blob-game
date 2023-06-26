@@ -1,6 +1,7 @@
 const canvas = document.getElementById('game-area');
 const ctx = canvas.getContext('2d');
 
+// Blob properties
 let x = 100;
 let y = 100;
 let radius = 50;
@@ -9,7 +10,7 @@ let downPressed = false;
 let upPressed = false;
 let leftPressed = false;
 let rightPressed = false;
-let speed = 30;
+let speed = 10;
 
 // Game loop
 function drawGame() {
