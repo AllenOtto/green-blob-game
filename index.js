@@ -9,7 +9,7 @@ let downPressed = false;
 let upPressed = false;
 let leftPressed = false;
 let rightPressed = false;
-let speed = 10;
+let speed = 30;
 
 // Game loop
 function drawGame() {
@@ -31,8 +31,8 @@ function boundaryCheck() {
         y = radius;
     }
     // Border bottom limit
-    if(y > 600 - radius) {
-        y = 600 - radius;
+    if(y > canvas.height - radius) {
+        y = canvas.height - radius;
     }
 
     // Border left limit
@@ -41,8 +41,8 @@ function boundaryCheck() {
     }
 
     //Border right limit
-    if(x > 800 - radius) {
-        x = 800 - radius;
+    if(x > canvas.width - radius) {
+        x = canvas.width - radius;
     }
 }
 
@@ -60,6 +60,20 @@ function inputs() {
 
 function drawGreenBlob() {
     ctx.fillStyle = 'green';
+    // Change color of blob based on direction of motion
+    if(upPressed) {
+        ctx.fillStyle = 'red';
+    }
+    if(downPressed) {
+        ctx.fillStyle = 'white';
+    }
+    if(leftPressed) {
+        ctx.fillStyle = 'orange';
+    }
+    if(rightPressed) {
+        ctx.fillStyle = 'purple';
+    }
+
     ctx.beginPath();
     // Position (x, y) of (100, 100), radius of 50
     // 0 is the start angle and (Math.PI * 2) is the end angle
